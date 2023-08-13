@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	
+    <!-- Define your beans here -->
+    
+    <!-- define the dependency -->
+    <!--  <bean id="myFortuneService"
+    		class="com.canddella.springdemo.HappyFortuneService">
+    	</bean>-->
+    <!--
+ 	<bean id="myCoach"
+ 		class="com.canddella.springdemo.TrackCoach">	 		
+ 	</bean>
+-->
+<!-- load the properties file: sport.properties -->
+	<context:property-placeholder location="classpath:sport.properties"/>
+	<!-- define the dependency -->
+    <bean id="myFortune"
+    class="com.nestjavatraining.springfoundation.HappyFortuneService"></bean>
+    
+ 	<bean id="myCoach"
+ 		class="com.nestjavatraining.springfoundation.TrackCoach">	
+ 		
+ 		<!-- set up constructor injection -->
+ 		<constructor-arg ref="myFortuneService" />
+ 	</bean>
+ 	
+ 	
+	<bean id="baseballCoach"
+		class="com.nestjavatraining.springfoundation.BaseballCoach">
+		<constructor-arg ref ="myFortune"/>
+	</bean>
+
+	<bean id="hockeyCoach"
+		class="com.nestjavatraining.springfoundation.HockeyCoach">
+	</bean>
+
+	<bean id="cricketCoach"
+		class="com.nestjavatraining.springfoundation.CricketCoach">
+		<property name = "fortuneService" ref = "myFortune"/>
+	</bean>
+
+ 	
+
+  
+    
+   
+</beans>
+
+
+
+
+
